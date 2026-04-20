@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DWARA PROJECT</title>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+    *{
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+      scroll-behavior: smooth;
+    }
+
+    body{
+      background: #0b0f19;
+      color: white;
+      overflow-x: hidden;
+    }
+
+    /* BACKGROUND LIGHT EFFECT */
+    .bg-light{
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      background: radial-gradient(circle at top left, rgba(0,180,255,0.18), transparent 60%),
+                  radial-gradient(circle at bottom right, rgba(140,0,255,0.18), transparent 60%);
+      z-index: -2;
+    }
+
+    /* NAVBAR */
+    nav{
+      position: fixed;
+      top: 0;
+      width: 100%;
+      padding: 16px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(10, 14, 25, 0.65);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      z-index: 999;
+    }
+
+    nav h1{
+      font-size: 18px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      color: #ffffff;
+    }
+
+    nav ul{
+      list-style: none;
+      display: flex;
+      gap: 20px;
+    }
+
+    nav ul li a{
+      text-decoration: none;
+      font-size: 14px;
+      color: rgba(255,255,255,0.75);
+      transition: 0.3s;
+    }
+
+    nav ul li a:hover{
+      color: #00b4ff;
+    }
+
+    /* HERO */
+    .hero{
+      min-height: 100vh;
+      padding: 120px 25px 60px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+
+    .hero h2{
+      font-size: 45px;
+      font-weight: 600;
+      line-height: 1.2;
+    }
+
+    .hero h2 span{
+      color: #00b4ff;
+    }
+
+    .hero p{
+      margin-top: 18px;
+      max-width: 720px;
+      font-size: 15px;
+      line-height: 1.8;
+      color: rgba(255,255,255,0.7);
+    }
+
+    /* BUTTONS */
+    .btns{
+      margin-top: 35px;
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .btn{
+      padding: 12px 22px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.06);
+      color: white;
+      text-decoration: none;
+      font-size: 14px;
+      transition: 0.3s;
+    }
+
+    .btn:hover{
+      transform: translateY(-4px);
+      background: rgba(0,180,255,0.18);
+      border: 1px solid rgba(0,180,255,0.35);
+    }
+
+    .btn.primary{
+      background: linear-gradient(90deg, #00b4ff, #7c3cff);
+      border: none;
+      font-weight: 600;
+    }
+
+    .btn.primary:hover{
+      opacity: 0.9;
+    }
+
+    /* CLOCK CARD */
+    .clock-card{
+      margin-top: 45px;
+      padding: 18px 25px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      box-shadow: 0 0 35px rgba(0,180,255,0.12);
+    }
+
+    #clock{
+      font-size: 34px;
+      font-weight: 600;
+      letter-spacing: 3px;
+      color: #00b4ff;
+    }
+
+    #date{
+      margin-top: 6px;
+      font-size: 13px;
+      color: rgba(255,255,255,0.7);
+    }
+
+    /* SECTIONS */
+    section{
+      padding: 90px 25px;
+      text-align: center;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    section h3{
+      font-size: 30px;
+      margin-bottom: 16px;
+      color: white;
+    }
+
+    section p{
+      font-size: 14px;
+      line-height: 1.8;
+      color: rgba(255,255,255,0.7);
+      max-width: 850px;
+      margin: auto;
+    }
+
+    /* CARDS */
+    .cards{
+      margin-top: 40px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 18px;
+    }
+
+    .card{
+      padding: 22px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      transition: 0.3s;
+      text-align: left;
+    }
+
+    .card:hover{
+      transform: translateY(-8px);
+      border: 1px solid rgba(0,180,255,0.4);
+      box-shadow: 0 0 40px rgba(0,180,255,0.15);
+    }
+
+    .card h4{
+      font-size: 16px;
+      margin-bottom: 10px;
+      color: #00b4ff;
+    }
+
+    .card span{
+      font-size: 13px;
+      color: rgba(255,255,255,0.7);
+      line-height: 1.6;
+    }
+
+    /* FOOTER */
+    footer{
+      padding: 40px 20px;
+      text-align: center;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      background: rgba(10, 14, 25, 0.7);
+    }
+
+    footer p{
+      font-size: 13px;
+      color: rgba(255,255,255,0.6);
+    }
+
+    footer .signature{
+      margin-top: 8px;
+      font-weight: 600;
+      color: #00b4ff;
+    }
+
+    /* RESPONSIVE NAV */
+    @media(max-width: 600px){
+      nav{
+        padding: 14px 18px;
+      }
+      nav ul{
+        gap: 12px;
+      }
+      .hero h2{
+        font-size: 33px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="bg-light"></div>
+
+  <nav>
+    <h1>DWARA PROJECT</h1>
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#features">Features</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <div class="hero">
+    <h2>Welcome to <span>DwaraProject</span></h2>
+    <p>
+      DWARA PROJECT adalah project website modern yang meneruskan literasi dan Teknologi terkini untuk Indonesia.
+      teknologi, dan simple tapi tetap terlihat keren dan profesional, dan pembuatnya masi Brondong lohh.
+    </p>
+
+    <div class="btns">
+      <a class="btn primary" href="#features">Get Started</a>
+      <a class="btn" href="#about">Learn More</a>
+    </div>
+
+    <div class="clock-card">
+      <div id="clock">00:00:00</div>
+      <div id="date">Loading...</div>
+    </div>
+  </div>
+
+  <section id="about">
+    <h3>About DwaraProject</h3>
+    <p>
+      DwaraProject dibuat sebagai konsep website modern untuk portofolio, komunitas,
+      Seorang Individual, atau project teknologi yang ingin tampil simple dan futuristik.
+    </p>
+
+    <div class="cards">
+      <div class="card">
+        <h4>Clean Design</h4>
+        <span>Tampilan sederhana tapi tetap modern dan enak dilihat.</span>
+      </div>
+
+      <div class="card">
+        <h4>Fast & Responsive</h4>
+        <span>Website tetap nyaman dibuka di HP maupun di laptop.</span>
+      </div>
+
+      <div class="card">
+        <h4>Technology Style</h4>
+        <span>Warna dan layout dibuat seperti website teknologi profesional.</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="features">
+    <h3>Features</h3>
+    <p>
+      Ini beberapa fitur yang bisa kamu upgrade kalau mau jadikan DWARA lebih keren.
+    </p>
+
+    <div class="cards">
+      <div class="card">
+        <h4>Live Clock</h4>
+        <span>Jam real-time biar kelihatan lebih interaktif.</span>
+      </div>
+
+      <div class="card">
+        <h4>Smooth Scroll</h4>
+        <span>Scroll antar menu halus dan gak patah-patah.</span>
+      </div>
+
+      <div class="card">
+        <h4>Modern UI Cards</h4>
+        <span>Kotak fitur dengan hover effect seperti website startup.</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <h3>Contact</h3>
+    <p>
+      Kamu bisa isi kontak ini buat sosial media atau link project kamu.
+    </p>
+
+    <div class="cards">
+      <div class="card">
+        <h4>Instagram</h4>
+        <span>@dwara00_</span>
+      </div>
+
+      <div class="card">
+        <h4>Email</h4>
+        <span>dwara1247@gmail.com</span>
+      </div>
+
+      <div class="card">
+        <h4>Discord</h4>
+        <span>daneswarasnught1.</span>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2026 DwaraProject(DWP) | All Rights Reserved</p>
+    <p class="signature">By: Daneswara</p>
+  </footer>
+
+  <script>
+    function updateClock(){
+      let now = new Date();
+
+      let h = String(now.getHours()).padStart(2, "0");
+      let m = String(now.getMinutes()).padStart(2, "0");
+      let s = String(now.getSeconds()).padStart(2, "0");
+
+      document.getElementById("clock").innerHTML = `${h}:${m}:${s}`;
+
+      let options = { weekday:'long', year:'numeric', month:'long', day:'numeric' };
+      document.getElementById("date").innerHTML = now.toLocaleDateString("id-ID", options);
+    }
+
+    setInterval(updateClock, 1000);
+    updateClock();
+  </script>
+
+</body>
+</html>
